@@ -1025,7 +1025,7 @@ top_popular_tfidf_words %>%
   scale_x_continuous(
                      breaks = top_popular_tfidf_words$row,
                      labels = top_popular_tfidf_words$`Wishes (tokenized)`) +
-  coord_flip()
+  coord_flip() 
 ```
 
 
