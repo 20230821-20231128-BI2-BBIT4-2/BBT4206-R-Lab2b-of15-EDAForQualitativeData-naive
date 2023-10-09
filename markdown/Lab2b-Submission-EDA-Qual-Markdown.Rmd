@@ -879,7 +879,7 @@ top_popular_tfidf_words <- popular_tfidf_words_likes %>%
                   levels = rev(unique(`Wishes (tokenized)`)))) %>%
   group_by(`Class Group`) %>%
   slice(seq_len(10)) %>%
-  ungroup() %>%
+  ungroup() %>% 
   arrange(`Class Group`, tf_idf) %>%
   mutate(row = row_number())
 
