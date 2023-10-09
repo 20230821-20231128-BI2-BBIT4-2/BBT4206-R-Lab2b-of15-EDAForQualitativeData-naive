@@ -58,6 +58,89 @@ if (!is.element("readr", installed.packages()[, 1])) {
                    repos="https://cloud.r-project.org")
 }
 require("readr")
+.libPaths()
+lapply(.libPaths(), list.files)
+if (!is.element("languageserver", installed.packages()[, 1])) {
+  install.packages("languageserver", dependencies = TRUE)
+}
+require("languageserver")
+if (!is.element("dplyr", installed.packages()[, 1])) {
+  install.packages("dplyr", dependencies = TRUE)
+}
+require("dplyr")
+if (!is.element("ggplot2", installed.packages()[, 1])) {
+  install.packages("ggplot2", dependencies = TRUE)
+}
+require("ggplot2")
+if (!is.element("ggrepel", installed.packages()[, 1])) {
+  install.packages("ggrepel", dependencies = TRUE)
+}
+require("ggrepel")
+if (!is.element("ggraph", installed.packages()[, 1])) {
+  install.packages("ggraph", dependencies = TRUE)
+}
+require("ggraph")
+if (!is.element("tidytext", installed.packages()[, 1])) {
+  install.packages("tidytext", dependencies = TRUE)
+}
+require("tidytext")
+if (!is.element("tidyr", installed.packages()[, 1])) {
+  install.packages("tidyr", dependencies = TRUE)
+}
+require("tidyr")
+if (!is.element("widyr", installed.packages()[, 1])) {
+  install.packages("widyr", dependencies = TRUE)
+}
+require("widyr")
+if (!is.element("gridExtra", installed.packages()[, 1])) {
+  install.packages("gridExtra", dependencies = TRUE)
+}
+require("gridExtra")
+if (!is.element("knitr", installed.packages()[, 1])) {
+  install.packages("knitr", dependencies = TRUE)
+}
+require("knitr")
+if (!is.element("kableExtra", installed.packages()[, 1])) {
+  install.packages("kableExtra", dependencies = TRUE)
+}
+require("kableExtra")
+if (!is.element("formattable", installed.packages()[, 1])) {
+  install.packages("formattable", dependencies = TRUE)
+}
+require("formattable")
+if (!is.element("circlize", installed.packages()[, 1])) {
+  install.packages("circlize", dependencies = TRUE)
+}
+require("circlize")
+if (!is.element("memery", installed.packages()[, 1])) {
+  install.packages("memery", dependencies = TRUE)
+}
+require("memery")
+if (!is.element("magick", installed.packages()[, 1])) {
+  install.packages("magick", dependencies = TRUE)
+}
+require("magick")
+if (!is.element("yarrr", installed.packages()[, 1])) {
+  install.packages("yarrr", dependencies = TRUE)
+}
+require("yarrr")
+if (!is.element("radarchart", installed.packages()[, 1])) {
+  install.packages("radarchart", dependencies = TRUE)
+}
+require("radarchart")
+if (!is.element("igraph", installed.packages()[, 1])) {
+  install.packages("igraph", dependencies = TRUE)
+}
+require("igraph")
+if (!is.element("wordcloud2", installed.packages()[, 1])) {
+  install.packages("wordcloud2", dependencies = TRUE)
+}
+require("wordcloud2")
+if (!is.element("readr", installed.packages()[, 1])) {
+  install.packages("readr", dependencies = TRUE,
+                   repos = "https://cloud.r-project.org")
+}
+require("readr")
 ```
 
 ------------------------------------------------------------------------
@@ -75,6 +158,52 @@ knitr::opts_chunk$set(
 	collapse = FALSE,
 	tidy = TRUE
 )
+blue_grey_colours_11 <- c("#27408E", "#304FAF", "#536CB5", "#6981c7", "#8da0db",
+                          "#dde5ec", "#c8c9ca", "#B9BCC2", "#A7AAAF", "#888A8E",
+                          "#636569")
+
+blue_grey_colours_6 <- c("#27408E", "#304FAF", "#536CB5",
+                         "#B9BCC2", "#A7AAAF", "#888A8E")
+
+blue_grey_colours_4 <- c("#27408E", "#536CB5",
+                         "#B9BCC2", "#888A8E")
+
+blue_grey_colours_2 <- c("#27408E",
+                         "#888A8E")
+
+blue_grey_colours_1 <- c("#6981c7")
+
+# Custom theme for visualizations
+blue_grey_theme <- function() {
+  theme(
+    axis.ticks = element_line(
+                              linewidth = 1, linetype = "dashed",
+                              lineend = NULL, color = "#dfdede",
+                              arrow = NULL, inherit.blank = FALSE),
+    axis.text = element_text(
+                             face = "bold", color = "#3f3f41",
+                             size = 12, hjust = 0.5),
+    axis.title = element_text(face = "bold", color = "#3f3f41",
+                              size = 14, hjust = 0.5),
+    plot.title = element_text(face = "bold", color = "#3f3f41",
+                              size = 16, hjust = 0.5),
+    panel.grid = element_line(
+                              linewidth = 0.1, linetype = "dashed",
+                              lineend = NULL, color = "#dfdede",
+                              arrow = NULL, inherit.blank = FALSE),
+    panel.background = element_rect(fill = "#f3eeee"),
+    legend.title = element_text(face = "plain", color = "#3f3f41",
+                                size = 12, hjust = 0),
+    legend.position = "right"
+  )
+}
+
+# Customize the text tables for consistency using HTML formatting
+kable_theme <- function(dat, caption) {
+  kable(dat, "html", escape = FALSE, caption = caption) %>%
+    kable_styling(bootstrap_options = c("striped", "condensed", "bordered"),
+                  full_width = FALSE)
+}
 ```
 
 ------------------------------------------------------------------------
@@ -244,6 +373,7 @@ dim(student_performance_dataset)
 View(student_performance_dataset)
 dim(student_performance_dataset)
 sapply(student_performance_dataset, class)
+glimpse(student_performance_dataset)
 
 summary(student_performance_dataset)
 
@@ -252,7 +382,7 @@ summary(student_performance_dataset)
 Next, we display the quartiles for each numeric variable[*... think of this process as **"storytelling using the data."** Tell us what is happening; tell us what you are discovering as you proceed with the markdown; walk us through your code step-by-step (a code walkthrough).*]{#highlight style="color: blue"}
 
 ```{r Your Fifth Code Chunk}
-summary(student_performance_dataset)
+
 
 evaluation_per_group_per_gender <- student_performance_dataset %>% 
   mutate(`Student's Gender` =
