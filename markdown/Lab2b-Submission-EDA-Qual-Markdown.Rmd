@@ -420,7 +420,8 @@ evaluation_per_group_per_gender <- student_performance_dataset %>%
   labs(x = "Class Group", y = "Average Rating")
 
 
-  ``` 
+   
+```
 
 # \Step5 Data cleansing for qualitative data\>
 
@@ -478,7 +479,7 @@ View(evaluation_likes_and_wishes)
 write.csv(evaluation_likes_and_wishes,
           file = "data/evaluation_likes_and_wishes.csv",
           row.names = FALSE)
-          ```
+```
 
 ## \Stemming and lemmatization. Tokenization\>
 
@@ -512,8 +513,8 @@ write.csv(evaluation_likes_filtered,
 write.csv(evaluation_wishes_filtered,
           file = "data/evaluation_wishes_filtered.csv",
           row.names = FALSE)
-          ```
-          
+
+```
 ## \Step 6 word count\>
 
 in this step a word count is performed on all comments made on evaluations and likes per gender.
